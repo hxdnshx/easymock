@@ -80,7 +80,7 @@ namespace EasyMock
                 return gmocker.Invoke(p ...);
             }
 
-            ::testing::MockSpec<R(P...)>& gmock_EasyMockStubFunction(const ::testing::Matcher<P>&... p)
+            auto gmock_EasyMockStubFunction(const ::testing::Matcher<P>&... p) -> decltype(std::declval<::testing::FunctionMocker<R(P...)>>().With(p ...))
             {
                 gmocker.RegisterOwner(this);
                 return gmocker.With(p ...);
